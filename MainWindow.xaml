@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkBoard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WorkBoard" MinHeight="450" MinWidth="800"
+        WindowState="Normal" WindowStyle="ToolWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="200"/>
@@ -21,7 +22,8 @@
             <Button Background="#007BFF"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
-                    Width="100">
+                    Width="100"
+                    Click="createNewIssue">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -31,6 +33,51 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"/>
             </Button>
+
+            <Button Background="#007BFF"
+                    Margin="4,4,4,4"
+                    Foreground="#FFF"
+                    Width="100"
+                    Click="inviteCollaboratorPopUp">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Add Collaborator"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+
+            <Popup Name="inviteUserPopUp"
+                   Placement="Center"
+                   HorizontalOffset="300"
+                   VerticalOffset="-25"
+                   Width="200"
+                   AllowsTransparency="True">
+                <StackPanel>
+                    <TextBlock Text="Add email below:" 
+                               TextAlignment="Center"
+                               FontSize="15"/>
+                    <TextBox Name="userEmailInput" Text="" TextAlignment="Center"/>
+
+                    <Button Background="#007BFF"
+                    Margin="4,4,4,4"
+                    Foreground="#FFF"
+                    Width="100"
+                    Click="sendInvite">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock Text="Send Invite"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Popup>
+            
         </StackPanel>
 
         

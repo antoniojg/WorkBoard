@@ -74,3 +74,10 @@ G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\obj\Debug\WorkBoard.csproj.C
 G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\obj\Debug\WorkBoard.csproj.CopyComplete
 G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\obj\Debug\WorkBoard.exe
 G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\obj\Debug\WorkBoard.pdb
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\obj\Debug\WorkBoard_Content.g.cs
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\bin\Debug\MaterialDesign.dll
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\bin\Debug\MaterialDesignColors.dll
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\bin\Debug\MaterialDesignThemes.Wpf.dll
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\bin\Debug\MaterialDesignColors.pdb
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\bin\Debug\MaterialDesignThemes.Wpf.pdb
+G:\Users\Antonio Garcia\Desktop\WorkBoard\WorkBoard\bin\Debug\MaterialDesignThemes.Wpf.xml
