@@ -55,10 +55,5 @@ namespace WorkBoard
             InitializeComponent();
             db = new DB();
         }
-
-        private void displayUsers()
-        {
-            string userNames = users.Text;
-        }
     }
 }
