@@ -25,11 +25,11 @@ namespace WorkBoard
         public DB()
         {
             bool boolfound = false;
-            using (NpgsqlConnection conn = new NpgsqlConnection("Server=<ip>; Port=5432; User Id=idysvcmxniumwr; Password=b688eb24744aefa8e14b5681017882fb44036d9a96c5cc70257cffa11d72525b; Database=Test1"))
+            using (NpgsqlConnection conn = new NpgsqlConnection(@"Host=ec2-3-210-23-22.compute-1.amazonaws.com;Port=5432;Database=d4p3grir278nt9;Username=idysvcmxniumwr;Password=b688eb24744aefa8e14b5681017882fb44036d9a96c5cc70257cffa11d72525b;Database=d4p3grir278nt9;sslmode=Require;Trust Server Certificate=true"))
             {
                 conn.Open();
 
-                NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM Table1", conn);
+                NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM user", conn);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
@@ -43,8 +43,6 @@ namespace WorkBoard
                 dr.Close();
             }
         }
-
-        
     }
 
     public partial class MainWindow : Window
@@ -56,6 +54,11 @@ namespace WorkBoard
             
             InitializeComponent();
             db = new DB();
+        }
+
+        private void displayUsers()
+        {
+            string userNames = users.Text;
         }
     }
 }
