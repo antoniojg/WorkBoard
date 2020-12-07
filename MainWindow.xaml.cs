@@ -41,7 +41,7 @@ namespace WorkBoard
         {
         }
 
-        public void DBAddUser(string email)
+        public void DBAddUser(string email, int role)
         {
             string connString =
                 String.Format(
@@ -59,9 +59,10 @@ namespace WorkBoard
                 conn.Open();
                 Console.WriteLine("CONNECTION OPENED");
 
-                using (var command = new NpgsqlCommand("INSERT INTO users (email) VALUES (@email)", conn))
+                using (var command = new NpgsqlCommand("INSERT INTO users (email, role) VALUES (@email, @role)", conn))
                 {
                     command.Parameters.AddWithValue("email", email);
+                    command.Parameters.AddWithValue("role", role);
 
                     command.ExecuteNonQuery();
                 }
@@ -71,19 +72,81 @@ namespace WorkBoard
             }
 
         }
+
+        public bool DBLogin(string email)
+        {
+            bool userFound;
+            string connString =
+                String.Format(
+                    "Server={0};Username={1};Database={2};Port={3};Password={4};SSLMode={5};Trust Server Certificate={6}",
+                    Host,
+                    User,
+                    DBname,
+                    Port,
+                    Password,
+                    ssl,
+                    cert);
+
+            using (var conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
+                Console.WriteLine("CONNECTION OPENED");
+
+                using (var command = new NpgsqlCommand("SELECT * FROM users WHERE email = @email", conn))
+                {
+                    command.Parameters.AddWithValue("email", email);
+
+                    using (NpgsqlDataReader rdr = command.ExecuteReader())
+                    {
+                        if (rdr.Read())
+                        {
+                            Console.WriteLine("User found");
+                            userFound = true;
+                        } else
+                        {
+                            Console.WriteLine("No User Found");
+                            userFound = false;
+                        }
+                       
+                    }
+                }
+
+                Console.WriteLine("USER LOGGED IN");
+                conn.Close();
+                return userFound;
+            }
+        }
     }
 
 
     public partial class MainWindow : Window
     {
         DB db;
+        bool userFound;
+        string userLoginEmail;
         string userEmail;
+        string userRole;
+        int userRoleNum;
 
         public MainWindow()
         {
             
             InitializeComponent();
             db = new DB();
+            loginPopup.IsOpen = true;
+        }
+
+        private void loginButton(object sender, RoutedEventArgs e)
+        {
+            userLoginEmail = userLoginInput.Text;
+            userFound = db.DBLogin(userLoginEmail);
+            if (userFound == true)
+            {
+                loginPopup.IsOpen = false;
+            } else
+            {
+                loginPopup.IsOpen = true;
+            }
         }
 
         private void createNewIssue(object sender, RoutedEventArgs e)
@@ -101,8 +164,25 @@ namespace WorkBoard
 
         private void sendInvite(object sender, RoutedEventArgs e)
         {
+            //Gets the inputed values form the "add user" popup
             userEmail = userEmailInput.Text;
-            db.DBAddUser(userEmail);
+            userRole = userRoleInput.Text;
+            Console.WriteLine(userRole);
+
+            if(userRole.Equals("Admin"))
+            {
+                userRoleNum = 1;
+            } else if (userRole.Equals("Editor"))
+            {
+                userRoleNum = 2;
+            } else if (userRole.Equals("Reader"))
+            {
+                userRoleNum = 3;
+            }
+
+            Console.WriteLine(userRoleNum);
+
+            db.DBAddUser(userEmail, userRoleNum);
             userEmailInput.Text = "";
             inviteUserPopUp.IsOpen = false;
         }

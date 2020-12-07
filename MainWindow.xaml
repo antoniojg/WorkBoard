@@ -16,6 +16,47 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <Popup Name="loginPopup"
+                   Placement="Center"
+                   HorizontalOffset="0"
+                   VerticalOffset="-25"
+                   Width="200"
+                   AllowsTransparency="True"
+                   >
+            <Border BorderBrush="Black"
+                    BorderThickness="1"
+                    MinHeight="100"
+                    MinWidth="200">
+            <StackPanel Background="#f0f0f0">
+                <TextBlock Text="Email Login:" 
+                           TextAlignment="Center"
+                           FontSize="15"
+                           Foreground="#fff"/>
+                <TextBox Name="userLoginInput" 
+                         Text="" 
+                         TextAlignment="Center"
+                         Margin="4,4,4,4"/>
+                
+                <Button Background="#007BFF"
+                    Margin="4,4,4,4"
+                    Foreground="#FFF"
+                    Width="100"
+                    Click="loginButton">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                    <TextBlock Text="Login"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+                </Button>
+            </StackPanel>
+            </Border>
+        </Popup>
+
+        <Border BorderThickness="0,0,1,0"
+                BorderBrush="Black">
         <StackPanel Grid.Column="0"
                     Background="#44C0C0C0">
 
@@ -34,7 +75,7 @@
                            TextAlignment="Center"/>
             </Button>
 
-            <Button Background="#007BFF"
+                <Button Background="#6C757D"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
                     Width="125">
@@ -48,7 +89,7 @@
                            TextAlignment="Center"/>
             </Button>
 
-            <Button Background="#007BFF"
+                <Button Background="#6C757D"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
                     Width="125">
@@ -61,7 +102,7 @@
                            TextAlignment="Center"/>
             </Button>
 
-            <Button Background="#007BFF"
+                <Button Background="#6C757D"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
                     Width="125">
@@ -75,7 +116,7 @@
                            TextAlignment="Center"/>
             </Button>
 
-            <Button Background="#007BFF"
+            <Button Background="#17A2B8"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
                     Width="125"
@@ -91,7 +132,7 @@
             </Button>
             
             
-
+            <!-- Pop up to add a new user -->
             <Popup Name="inviteUserPopUp"
                    Placement="Center"
                    HorizontalOffset="300"
@@ -103,7 +144,14 @@
                                TextAlignment="Center"
                                FontSize="15"/>
                     <TextBox Name="userEmailInput" Text="" TextAlignment="Center"/>
-
+                    <ComboBox Name="userRoleInput" 
+                              Margin="4,4,4,4"
+                              SelectedValuePath="content"
+                              >
+                            <ComboBoxItem IsSelected="True">Admin</ComboBoxItem>
+                            <ComboBoxItem>Editor</ComboBoxItem>
+                            <ComboBoxItem>Reader</ComboBoxItem>
+                    </ComboBox>
                     <Button Background="#007BFF"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
@@ -122,7 +170,7 @@
             </Popup>
             
         </StackPanel>
+        </Border>
 
-        
     </Grid>
 </Window>
