@@ -22,7 +22,7 @@
             <Button Background="#007BFF"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
-                    Width="100"
+                    Width="125"
                     Click="createNewIssue">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -37,7 +37,48 @@
             <Button Background="#007BFF"
                     Margin="4,4,4,4"
                     Foreground="#FFF"
-                    Width="100"
+                    Width="125">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Work Orders"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+
+            <Button Background="#007BFF"
+                    Margin="4,4,4,4"
+                    Foreground="#FFF"
+                    Width="125">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Fucked Up Machines"
+                           TextAlignment="Center"/>
+            </Button>
+
+            <Button Background="#007BFF"
+                    Margin="4,4,4,4"
+                    Foreground="#FFF"
+                    Width="125">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+                <TextBlock Text="Daily Cases"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Button>
+
+            <Button Background="#007BFF"
+                    Margin="4,4,4,4"
+                    Foreground="#FFF"
+                    Width="125"
                     Click="inviteCollaboratorPopUp">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -48,6 +89,8 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"/>
             </Button>
+            
+            
 
             <Popup Name="inviteUserPopUp"
                    Placement="Center"
