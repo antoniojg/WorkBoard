@@ -116,6 +116,54 @@ namespace WorkBoard
                 return userFound;
             }
         }
+
+        public List<string> DBGetUserList()
+        {
+            List<string> userList = new List<string>();
+            string userRoleName = "";
+            string connString =
+                String.Format(
+                    "Server={0};Username={1};Database={2};Port={3};Password={4};SSLMode={5};Trust Server Certificate={6}",
+                    Host,
+                    User,
+                    DBname,
+                    Port,
+                    Password,
+                    ssl,
+                    cert);
+
+            using (var conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
+                Console.WriteLine("CONNECTION OPENED");
+
+                using (var command = new NpgsqlCommand("SELECT * FROM users", conn))
+                {
+                    using (NpgsqlDataReader rdr = command.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            if (rdr.GetInt32(2) == 1)
+                            {
+                                userRoleName = "Admin";
+                            } else if(rdr.GetInt32(2) == 2)
+                            {
+                                userRoleName = "Editor";
+                            } else if (rdr.GetInt32(3) == 3)
+                            {
+                                userRoleName = "Author";
+                            }
+                            userList.Add(rdr.GetString(1) + "    |     " + userRoleName);
+                        }
+
+                    }
+                }
+
+                Console.WriteLine("USER RETRIEVED");
+                conn.Close();
+                return userList;
+            }
+        }
     }
 
 
@@ -127,6 +175,8 @@ namespace WorkBoard
         string userEmail;
         string userRole;
         int userRoleNum;
+
+        List<string> usersList;
 
         public MainWindow()
         {
@@ -143,10 +193,20 @@ namespace WorkBoard
             if (userFound == true)
             {
                 loginPopup.IsOpen = false;
+                loggedInUserEmail.Text = userLoginEmail;
             } else
             {
                 loginPopup.IsOpen = true;
+                userLoginInput.Text = "";
+                MessageBox.Show("Wrong email");
             }
+        }
+
+        private void userListButton(object sender, RoutedEventArgs e)
+        {
+            userListPopup.IsOpen = true;
+            usersList = db.DBGetUserList();
+            userListText.ItemsSource = usersList;
         }
 
         private void createNewIssue(object sender, RoutedEventArgs e)
@@ -185,6 +245,11 @@ namespace WorkBoard
             db.DBAddUser(userEmail, userRoleNum);
             userEmailInput.Text = "";
             inviteUserPopUp.IsOpen = false;
+        }
+
+        private void closeUserListPopup(object sender, RoutedEventArgs e)
+        {
+            userListPopup.IsOpen = false;
         }
     }
 }
