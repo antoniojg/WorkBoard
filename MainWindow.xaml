@@ -34,7 +34,7 @@
                            FontSize="15"
                            Foreground="#fff"/>
                 <TextBox Name="userLoginInput" 
-                         Text="" 
+                         Text="test@mail.com" 
                          TextAlignment="Center"
                          Margin="4,4,4,4"/>
                 

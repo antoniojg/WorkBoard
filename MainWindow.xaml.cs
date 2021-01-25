@@ -59,7 +59,7 @@ namespace WorkBoard
                 conn.Open();
                 Console.WriteLine("CONNECTION OPENED");
 
-                using (var command = new NpgsqlCommand("INSERT INTO users (email, role) VALUES (@email, @role)", conn))
+                using (var command = new NpgsqlCommand("INSERT INTO users (email, role) SELECT @email, @role WHERE NOT EXISTS (SELECT 1 FROM users WHERE email = @email)", conn))
                 {
                     command.Parameters.AddWithValue("email", email);
                     command.Parameters.AddWithValue("role", role);
