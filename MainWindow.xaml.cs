@@ -21,21 +21,13 @@ namespace WorkBoard
     /// </summary>
     class DB
     {
-        private static string Host = "ec2-3-210-23-22.compute-1.amazonaws.com";
-        private static string User = "idysvcmxniumwr";
-        private static string DBname = "d4p3grir278nt9";
-        private static string Password = "b688eb24744aefa8e14b5681017882fb44036d9a96c5cc70257cffa11d72525b";
-        private static string Port = "5432";
+        private static string Host = "";
+        private static string User = "";
+        private static string DBname = "";
+        private static string Password = "";
+        private static string Port = "";
         private static string ssl = "Require";
         private static string cert = "true";
-        /*NpgsqlConnection conn = new NpgsqlConnection(@"Host=ec2-3-210-23-22.compute-1.amazonaws.com;
-                                                       Port=5432;
-                                                       Database=d4p3grir278nt9;
-                                                       Username=idysvcmxniumwr;
-                                                       Password=b688eb24744aefa8e14b5681017882fb44036d9a96c5cc70257cffa11d72525b;
-                                                       Database=d4p3grir278nt9;
-                                                       sslmode=Require;
-                                                       Trust Server Certificate=true");*/
 
         public DB()
         {
